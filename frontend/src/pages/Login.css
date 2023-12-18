@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+.container {
+    margin: 200px auto;
+}
+
+.login-container {
+    position: relative;
+    width: 720px;
+    height: 440px;
+    margin: 20px auto;
+    border: 1px solid #dddd;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: #fff;
+}
+
+.box-1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.box-2 {
+    padding: 10px;
+}
+
+.box-1,
+.box-2 {
+    width: 50%;
+}
+
+.h-1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.text-muted {
+    font-size: 14px;
+}
+
+.container .box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    text-decoration: none;
+    color: #615f5fdd;
+}
+
+.box:active,
+.box:visited {
+    border: 2px solid #ee82ee;
+}
+
+.box:hover {
+    border: 2px solid #ee82ee;
+}
+
+.btn.btn-primary {
+    background-color: transparent;
+    color: #ee82ee;
+    border: 0px;
+    padding: 0;
+    font-size: 14px;
+}
+
+.btn.btn-primary .fas.fa-chevron-right {
+    font-size: 12px;
+}
+
+.footer .p-color {
+    color: #ee82ee;
+}
+
+.footer.text-muted {
+    font-size: 10px;
+}
+
+.fas.fa-times {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 20px;
+    width: 20px;
+    background-color: #f3cff379;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fas.fa-times:hover {
+    color: #ff0000;
+}
+
+@media (max-width:767px) {
+    .login {
+        padding: 10px;
+    }
+
+    .login-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .box-1 {
+        width: 100%;
+    }
+
+    .box-2 {
+        width: 100%;
+        height: 440px;
+    }
+}
+
+/*
+aasaaaaasdasdasd */
+
+.login {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, rgb(36, 1, 73) 3%, rgb(0, 83, 167) 38%, rgb(27, 150, 232) 68%, rgb(82, 2, 152) 98%);
+    animation: gradient 18s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+}

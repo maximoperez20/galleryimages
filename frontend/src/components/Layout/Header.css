@@ -1,0 +1,29 @@
+.header {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/009/279/989/non_2x/pink-pastel-color-abstract-background-design-and-soft-pastel-color-concept-wallpaper-concept-free-vector.jpg');
+    background-position-x: 100%;
+    background-position-y: 45%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-align: right;
+    justify-content: center;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.header .title {
+    text-align: right;
+    flex: 1;
+    margin: 2rem 3rem;
+    font-family: kalam-bold;
+    font-size: 2rem;
+    color: #780252;
+}
+
+@media (width < 768px) {
+    .header {
+        height: 5rem;
+    }
+}
