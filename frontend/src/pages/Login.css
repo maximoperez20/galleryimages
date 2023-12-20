@@ -68,7 +68,7 @@
     border: 2px solid #ee82ee;
 }
 
-.btn.btn-primary {
+.login .btn.btn-primary {
     background-color: transparent;
     color: #ee82ee;
     border: 0px;
@@ -76,7 +76,7 @@
     font-size: 14px;
 }
 
-.btn.btn-primary .fas.fa-chevron-right {
+.login .btn.btn-primary .fas.fa-chevron-right {
     font-size: 12px;
 }
 

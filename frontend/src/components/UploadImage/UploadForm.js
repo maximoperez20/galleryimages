@@ -37,7 +37,7 @@ function UploadForm({ children, inputData, onSubmit }) {
 
   return (
     <div className="">
-      <form className="upload-image-form"  onSubmit={handleSubmit}>
+      <form className="upload-image-form" onSubmit={handleSubmit}>
         <label htmlFor="content">Image</label>
         <input
           type="file"
@@ -46,10 +46,15 @@ function UploadForm({ children, inputData, onSubmit }) {
           name="image"
           defaultValue={inputData?.content}
           onChange={onSelectFile}
-        ></input>
+        />
         {selectedFile && <img className="image-preview" src={preview} />}
         <label htmlFor="description">Description</label>
-        <input required name="description" defaultValue={inputData?.description}></input>
+        <input
+          required
+          maxLength={70}
+          name="description"
+          defaultValue={inputData?.description}
+        />
         <div className="buttons-container">{children}</div>
       </form>
     </div>

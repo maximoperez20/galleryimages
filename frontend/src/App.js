@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import Upload from "./components/UploadImage/Upload";
 import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,14 @@ const router = createBrowserRouter([
     element: <HomePage />,
     children: [{ path: "/upload", element: <Upload /> }],
   },
-  { path: "/admin", element: <AdminPage /> },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute>
+        <AdminPage />
+      </ProtectedRoute>
+    ),
+  },
   { path: "/login", element: <LoginPage /> },
 ]);
 

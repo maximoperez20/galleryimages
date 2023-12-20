@@ -1,0 +1,65 @@
+.notification-container {
+    width: 350px;
+    height: auto;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    animation: 5s popup ease;
+    opacity: 0;
+    z-index: 100;
+}
+
+.notification-container .content {
+    margin-left: 1rem;
+}
+
+.notification-container p {
+    margin: 0;
+    color: #fff;
+}
+
+.notification-container p.title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+@keyframes popup {
+    0% {
+        transform: scale(0.5);
+        transform: translateY(-200px);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1);
+        transform: translateY(0);
+        opacity: 1;
+
+    }
+
+    80% {
+        opacity: 1;
+
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (width < 768px) {
+
+    .notification-container {
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+}

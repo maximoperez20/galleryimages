@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const photosRoutes = require("./routes/photos");
 const adminRoutes = require("./routes/admin");
+const authRoutes = require("./routes/auth");
 
 app.use(express.static("public"));
 
@@ -17,6 +18,7 @@ app.set("json spaces", 2);
 
 app.use("/photos", photosRoutes);
 app.use("/admin", adminRoutes);
+app.use("/auth", authRoutes);
 
 //Iniciando el servidor, escuchando...
 app.listen(app.get("port"), () => {

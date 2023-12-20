@@ -1,5 +1,5 @@
 .upload-image_button {
-    background-color: #ccf8ffbe;
+    background-color: #d5f9fe;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -8,10 +8,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     right: 1rem;
     bottom: 1rem;
     transition: 1s ease;
+    z-index: 1;
 }
 
 .upload-image_button:hover {
@@ -20,10 +21,18 @@
     background-color: #87eafabe;
 }
 
+.upload-container {
+    min-height: 22rem;
+}
+
 .upload-image-form {
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 20px;
+    height: 21rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
 }
 
 .upload-image-form input {
@@ -46,4 +55,5 @@
     width: 50px;
     height: 50px;
     display: block;
+    border: 1px solid lightgray;
 }

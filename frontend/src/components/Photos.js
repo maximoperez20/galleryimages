@@ -3,8 +3,10 @@ import { Autoplay } from "swiper/modules";
 import React from "react";
 import { getAllVisiblePhotos } from "./../services/photoServices";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "./UI/LoadingSpinner";
 import "./Photos.css";
 import Photo from "./Photo";
+import LoadingFullScreen from "./UI/LoadingFullScreen";
 function Photos() {
   const { data, isError, error, isFetching } = useQuery({
     queryKey: ["photos"],

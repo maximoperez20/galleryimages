@@ -1,6 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../store/auth-slice";
+import { fetchLogIn } from "../services/authServices";
+import { useNavigate } from "react-router-dom";
 function LoginPage() {
+  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
+
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.loggedIn);
+
+  console.log("token", token);
+  const handleLogin = (event) => {
+
+    event.preventDefault();
+    fetchLogIn({ user, password }).then((response) => {
+      console.log(response);
+      if (response.success && response.token) {
+        console.log("dispatched");
+        dispatch(
+          authActions.login({
+            token: response.token,
+          })
+        );
+        navigate("/admin");
+      }
+    });
+
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleUserChange = (event) => {
+    setUser(event.target.value);
+  };
   return (
     <div class="login">
       <div class="container">
@@ -15,26 +51,34 @@ function LoginPage() {
           <div class=" box-2 d-flex flex-column h-100">
             <div class="mt-5 p-2">
               <p class="mb-1 h-1">Inicio de sesión.</p>
-              <p class="text-muted mb-2">Ingrese al panel de administrador con su usuario.</p>
+              <p class="text-muted mb-2">
+                Ingrese al panel de administrador con su usuario.
+              </p>
               <div>
                 <form method="post">
-                  <label class="form-label">Email</label>
+                  <label class="form-label">Username</label>
                   <input
-                    type="email"
                     class="form-control"
-                    id="emailInput"
-                    name="email"
-                    placeholder="name@example.com"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    onChange={handleUserChange}
+                    value={user}
                   />
                   <label class="form-label">Contraseña</label>
                   <input
+                    class="form-control"
                     type="password"
                     name="password"
-                    class="form-control"
-                    id="passwordInput"
                     placeholder="***********"
+                    onChange={handlePasswordChange}
+                    value={password}
                   />
-                  <button type="submit" class="btn btn-primary">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    onClick={handleLogin}
+                  >
                     Ingresar
                   </button>
                 </form>
