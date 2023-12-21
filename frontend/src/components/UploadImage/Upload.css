@@ -43,7 +43,13 @@
 
 .upload-image-form .buttons-container {
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.error-msg {
+    color: red;
+    margin: 0;
 }
 
 .upload-image-form button {

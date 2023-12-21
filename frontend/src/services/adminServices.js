@@ -1,6 +1,8 @@
+import { urlPath } from "./urlService";
+
 export const approvePhoto = async (id) => {
   const data = { id: id };
-  const response = await fetch("http://localhost:4000/admin/photos/approve/", {
+  const response = await fetch(urlPath + "admin/photos/approve/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +13,7 @@ export const approvePhoto = async (id) => {
 };
 export const rejectPhoto = async (id) => {
   const data = { id: id };
-  const response = await fetch("http://localhost:4000/admin/photos/reject/", {
+  const response = await fetch(urlPath + "admin/photos/reject/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,6 +1,5 @@
 .photos__container {
-    margin: 2rem 4rem 0;
-    flex: 1;
+    margin: 2rem 2rem 0;
     height: 100%;
 }
 
@@ -14,7 +13,7 @@
     flex-direction: column;
     box-shadow: rgba(100, 100, 111, 0.25) 0px 7px 29px 0px;
     overflow: hidden;
-    padding: 2rem;
+    padding: 1rem;
     justify-content: flex-start;
     height: 80vh;
     width: auto;
@@ -51,8 +50,7 @@
 
 @media (width < 768px) {
     .photos__container {
-        margin: 1rem 1rem;
-        height: 80vh;
+        margin: 1rem 0.5rem 0;
     }
 
     .image-container,
@@ -62,6 +60,7 @@
 
     .photo__container {
         padding: 1rem;
+        height: 75vh;
     }
 
 }

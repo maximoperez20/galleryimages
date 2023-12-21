@@ -1,5 +1,7 @@
+import { urlPath } from "./urlService";
+
 export const fetchLogIn = async (data) => {
-  const response = await fetch("http://localhost:4000/auth/login", {
+  const response = await fetch(urlPath + "auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

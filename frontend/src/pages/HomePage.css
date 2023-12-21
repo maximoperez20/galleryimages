@@ -3,5 +3,9 @@
     background-color: #fdf4f6;
     display: flex;
     flex-direction: column;
+}
+
+#root {
+    background-color: #fdf4f6;
     min-height: 100vh;
 }

@@ -24,6 +24,8 @@
 .photo-card__text {
     flex: 2;
     padding: 1rem;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .photo-card__actions {

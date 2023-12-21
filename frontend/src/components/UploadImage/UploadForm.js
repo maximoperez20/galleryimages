@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function UploadForm({ children, inputData, onSubmit }) {
+function UploadForm({ children, inputData, onSubmit, setProperty }) {
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
 
@@ -23,9 +23,29 @@ function UploadForm({ children, inputData, onSubmit }) {
       return;
     }
 
-    // I've kept this example simple by using the first image instead of multiple
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      // Check file size
+      if (file.size <= 6 * 1024 * 1024) {
+        setSelectedFile(file);
+        setProperty({ image: true });
+      } else {
+        setSelectedFile(undefined);
+        setProperty({ image: false });
+      }
+    }
   };
+
+  const onTextChange = (e) => {
+    let textValid;
+    if (e.target.value.length != 0) {
+      textValid = true;
+    } else {
+      textValid = false;
+    }
+    setProperty({ text: textValid });
+  };
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -36,28 +56,25 @@ function UploadForm({ children, inputData, onSubmit }) {
   }
 
   return (
-    <div className="">
-      <form className="upload-image-form" onSubmit={handleSubmit}>
-        <label htmlFor="content">Image</label>
-        <input
-          type="file"
-          accept="image/*"
-          required
-          name="image"
-          defaultValue={inputData?.content}
-          onChange={onSelectFile}
-        />
-        {selectedFile && <img className="image-preview" src={preview} />}
-        <label htmlFor="description">Description</label>
-        <input
-          required
-          maxLength={70}
-          name="description"
-          defaultValue={inputData?.description}
-        />
-        <div className="buttons-container">{children}</div>
-      </form>
-    </div>
+    <form className="upload-image-form" onSubmit={handleSubmit}>
+      <label htmlFor="content">Image</label>
+      <input
+        type="file"
+        accept="image/*"
+        required
+        name="image"
+        onChange={onSelectFile}
+      />
+      {selectedFile && <img className="image-preview" src={preview} />}
+      <label htmlFor="description">Description</label>
+      <input
+        required
+        maxLength={70}
+        name="description"
+        onChange={onTextChange}
+      />
+      <div className="buttons-container">{children}</div>
+    </form>
   );
 }
 

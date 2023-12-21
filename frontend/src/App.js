@@ -1,6 +1,10 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/queryClient";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  HashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import Swiper styles

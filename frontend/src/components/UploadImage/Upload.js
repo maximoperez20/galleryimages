@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./../UI/Modal";
 import UploadForm from "./UploadForm";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,23 @@ import Notification from "../UI/Notification";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 
-function Upload(props) {
+function Upload() {
+  const [isValidForm, setIsValidForm] = useState({ image: null, text: null });
+
+  const onPropertyValid = (property) => {
+    console.log("prop", property);
+    if (property.text !== undefined) {
+      setIsValidForm((prevState) => {
+        return { ...prevState, text: property.text };
+      });
+    }
+    if (property.image !== undefined) {
+      setIsValidForm((prevState) => {
+        return { ...prevState, image: property.image };
+      });
+    }
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleCancel = () => {
@@ -47,9 +63,14 @@ function Upload(props) {
     mutate(data);
   };
 
+  const isFormValid = (imageValid, textValid) => {
+    if (imageValid && textValid) return true;
+
+    return false;
+  };
+
   return (
     <Modal>
-      <h1>{props.text}</h1>
       <div className="upload-container">
         {true && (
           <Notification
@@ -59,9 +80,14 @@ function Upload(props) {
           />
         )}
         <h1>Upload your image!</h1>
-        <UploadForm onSubmit={handleSubmit}>
+        <UploadForm onSubmit={handleSubmit} setProperty={onPropertyValid}>
           {!isPending ? (
             <>
+              {isValidForm.image == false && (
+                <p className="error-msg">
+                  Not valid image. Maximum Size Allowed: 6MB
+                </p>
+              )}
               <button
                 className="btn btn-secondary"
                 type="button"
@@ -69,7 +95,11 @@ function Upload(props) {
               >
                 Cancel
               </button>
-              <button className="btn btn-primary" type="submit">
+              <button
+                disabled={!isValidForm.image && !isFormValid.text}
+                className="btn btn-primary"
+                type="submit"
+              >
                 Submit
               </button>
             </>

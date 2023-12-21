@@ -7,6 +7,7 @@ import LoadingSpinner from "./UI/LoadingSpinner";
 import "./Photos.css";
 import Photo from "./Photo";
 import LoadingFullScreen from "./UI/LoadingFullScreen";
+import { urlPath } from "../services/urlService";
 function Photos() {
   const { data, isError, error, isFetching } = useQuery({
     queryKey: ["photos"],
@@ -31,11 +32,11 @@ function Photos() {
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 40,
+            spaceBetween: 20,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 50,
+            spaceBetween: 20,
           },
         }}
         onSlideChange={() => console.log("slide change")}
@@ -44,7 +45,7 @@ function Photos() {
         {data?.images?.map((item) => (
           <SwiperSlide key={item.id}>
             <Photo
-              path={"http://localhost:4000/images/" + item.path}
+              path={urlPath + "images/" + item.path}
               description={item.description}
               date={item.date}
             />
