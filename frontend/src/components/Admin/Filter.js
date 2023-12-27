@@ -7,9 +7,11 @@ function Filter({ onSelect }) {
   };
   return (
     <div>
-      <select onChange={handleSelectChange}>
+      <select onChange={handleSelectChange} defaultValue={"pending"}>
         <option value="all">All</option>
-        <option value="pending">Pending</option>
+        <option value="pending">
+          Pending
+        </option>
         <option value="visible">Visible</option>
         <option value="rejected">Rejected</option>
       </select>

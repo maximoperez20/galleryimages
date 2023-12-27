@@ -9,6 +9,7 @@ import { queryClient } from "./../../utils/queryClient";
 import Notification from "../UI/Notification";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
+import { socket } from "../../App";
 
 function Upload() {
   const [isValidForm, setIsValidForm] = useState({ image: null, text: null });
@@ -45,6 +46,7 @@ function Upload() {
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: uploadPhoto,
     onSuccess: () => {
+      socket.emit("send_new_photo");
       queryClient.invalidateQueries({ queryKey: ["photos"] });
       navigate("/");
       handleShowNotification();

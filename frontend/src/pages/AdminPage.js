@@ -3,7 +3,7 @@ import ManagePhotos from '../components/Admin/ManagePhotos'
 
 function AdminPage() {
   return (
-    <div>AdminPage
+    <div>
       <ManagePhotos/>
     </div>
   )

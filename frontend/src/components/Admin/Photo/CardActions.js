@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { approvePhoto, rejectPhoto } from "../../../services/adminServices";
 import { queryClient } from "./../../../utils/queryClient";
 import LoadingFullScreen from "./../../UI/LoadingFullScreen";
+import { socket } from "../../../App";
 
 function CardActions({ id }) {
 
@@ -15,6 +16,7 @@ function CardActions({ id }) {
   } = useMutation({
     mutationFn: approvePhoto,
     onSuccess: () => {
+      socket.emit("send_photo_accept");
       queryClient.invalidateQueries({ queryKey: ["photos"] });
     },
   });
@@ -26,6 +28,7 @@ function CardActions({ id }) {
   } = useMutation({
     mutationFn: rejectPhoto,
     onSuccess: () => {
+      socket.emit("send_photo_reject");
       queryClient.invalidateQueries({ queryKey: ["photos"] });
     },
   });

@@ -5,14 +5,16 @@ import PhotoCard from "./Photo/PhotoCard";
 import LoadingFullScreen from "./../UI/LoadingFullScreen";
 import { urlPath } from "../../services/urlService";
 import Filter from "./Filter";
+import "./ManagePhotos.css";
+import AdminHeader from "./AdminHeader";
+import { Navbar } from "./NavBar";
 
 function ManagePhotos() {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("pending");
   const { data, isError, error, isFetching } = useQuery({
     queryKey: ["photos"],
     queryFn: getAllPhotos,
-    staleTime: 5000,
-    refetchInterval: 60000,
+    staleTime: 50000,
   });
 
   useEffect(() => {
@@ -43,7 +45,7 @@ function ManagePhotos() {
         break;
     }
     setFilteredData(() => {
-      const newArray = data.images.filter(
+      const newArray = data?.images?.filter(
         (item) => item.visible == visibleCondition
       );
       console.log(newArray);
@@ -53,20 +55,25 @@ function ManagePhotos() {
 
   const [filteredData, setFilteredData] = useState();
   return (
-    <div>
-      <Filter onSelect={handleFilterChange} />
-      {isFetching && <LoadingFullScreen />}
+    <>
+      <AdminHeader />
+      {/* <Navbar /> */}
+      <h4>Photos Management</h4>
+      <div className="admin-photos-container">
+        <Filter onSelect={handleFilterChange} />
+        {isFetching && <LoadingFullScreen />}
 
-      {filteredData?.images?.map((item) => (
-        <PhotoCard
-          key={item.id}
-          path={urlPath + "images/" + item.path}
-          description={item.description}
-          id={item.id}
-          status={item.visible}
-        />
-      ))}
-    </div>
+        {filteredData?.images?.map((item) => (
+          <PhotoCard
+            key={item.id}
+            path={urlPath + "images/" + item.path}
+            description={item.description}
+            id={item.id}
+            status={item.visible}
+          />
+        ))}
+      </div>
+    </>
   );
 }
 

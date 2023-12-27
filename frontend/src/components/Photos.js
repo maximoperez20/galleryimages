@@ -12,8 +12,7 @@ function Photos() {
   const { data, isError, error, isFetching } = useQuery({
     queryKey: ["photos"],
     queryFn: getAllVisiblePhotos,
-    staleTime: 5000,
-    refetchInterval: 60000,
+    staleTime: 30000,
   });
 
   return (
@@ -22,7 +21,8 @@ function Photos() {
         modules={[Autoplay]}
         spaceBetween={60}
         slidesPerView={1}
-        autoplay={true}
+        autoplay={{ delay: 2000 }}
+        delay
         speed={2000}
         loop={true}
         breakpoints={{

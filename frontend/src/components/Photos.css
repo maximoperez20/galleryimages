@@ -17,7 +17,22 @@
     justify-content: flex-start;
     height: 80vh;
     width: auto;
+}
 
+.swiper-slide:last-of-type {
+    animation: 2s pop ease;
+}
+
+@keyframes pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .photo {

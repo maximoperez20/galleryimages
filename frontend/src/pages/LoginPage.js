@@ -25,7 +25,7 @@ function LoginPage() {
             token: response.token,
           })
         );
-        navigate("/admin");
+        navigate("/admin/photos");
       }
     });
 

@@ -17,9 +17,8 @@ import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import io from "socket.io-client";
-import { useEffect } from "react";
 
-export const socket = io.connect("https://quincestrini.com.ar/");
+const socket = io.connect("http://localhost:4000/");
 
 const router = createBrowserRouter([
   {
@@ -29,28 +28,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    children: [
-      { path: "photos", element: <AdminPage /> },
-      { path: "downloads", element: <AdminPage /> },
-      { path: "settings", element: <AdminPage /> },
-    ],
+    element: (
+      <ProtectedRoute>
+        <AdminPage />
+      </ProtectedRoute>
+    ),
   },
   { path: "/login", element: <LoginPage /> },
 ]);
 
 function App() {
-  useEffect(() => {
-    socket.on("new_photo_added", () => {
-      queryClient.invalidateQueries({ queryKey: ["photos"] });
-    });
-    socket.on("photo_rejected", () => {
-      queryClient.invalidateQueries({ queryKey: ["photos"] });
-    });
-    socket.on("photo_accepted", () => {
-      queryClient.invalidateQueries({ queryKey: ["photos"] });
-    });
-  }, [socket]);
-
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
